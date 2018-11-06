@@ -1,0 +1,14 @@
+    @nombre_etiqueta = nombre_etiqueta
+        @grasa = grasa
+        @grasa_saturada = grasa_saturada
+        @hid_carbono = hid_carbono
+        @azucares = azucares
+        @proteinas = proteinas
+        @sal = sal
+        
+        
+        
+        desc "Ejecutar con documentacion"
+task :doc do
+  sh "rspec -I. spec/point_spec.rb --format documentation"
+end
