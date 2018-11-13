@@ -119,7 +119,7 @@ RSpec.describe Nutricional_label do
         end
          it "el alimento fue insertado por la cabeza." do
             @nodo_expect = Node.new(@alimento2)
-            expect(@dll.inserthead(@alimento2)).to eq(@nodo_expect)
+            expect(@dll.insertHead(@alimento2)).to eq(@nodo_expect)
         end
     end
     
