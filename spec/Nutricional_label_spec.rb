@@ -6,7 +6,7 @@ RSpec.describe Nutricional_label do
     end
     
     before :each do
-        @dll = Dll.new()
+        @dll = DlinkedList.new()
         @alimento1 = Nutricional_label.new("etiqueta 1",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
         @alimento2 = Nutricional_label.new("etiqueta 2",9.0,14.0,31.0,36.0,6.9,0.75)
     end
@@ -111,5 +111,20 @@ RSpec.describe Nutricional_label do
             expect(@dll.current).to eq(nil)
         end
     end 
+    
+    describe "# insertar un alimento: " do
+        it "el alimento fue insertado por la cola." do
+            @nodo_expect = Node.new(@alimento1)
+            expect(@dll.insertTail(@alimento1)).to eq(@nodo_expect)
+        end
+         it "el alimento fue insertado por la cabeza." do
+            @nodo_expect = Node.new(@alimento2)
+            expect(@dll.inserthead(@alimento2)).to eq(@nodo_expect)
+        end
+    end
+    
+    
+    
+    
     
 end
