@@ -1,4 +1,5 @@
 require 'nutrientes/version'
+require 'Dll'
 
 class Nutricional_label
 
@@ -27,6 +28,7 @@ class Nutricional_label
     end
 
     def to_s
+        puts "#{@nombre_etiqueta}"
         puts "\nValor energetico o nutriente    | por 100g o 100ml de producto "
         puts "--------------------------------|--------------------------------"
         puts "valor energetico                |" + " #{energetic_value_KJ}" + " KJ/" + "#{energetic_value_Kcal}" + " Kcal"

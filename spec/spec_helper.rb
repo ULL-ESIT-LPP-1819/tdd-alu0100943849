@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "Nutricional_label"
+require "Dll"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
