@@ -9,8 +9,6 @@ RSpec.describe Nutricional_label do
         @dll = Dll.new()
         @alimento1 = Nutricional_label.new("etiqueta 1",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
         @alimento2 = Nutricional_label.new("etiqueta 2",9.0,14.0,31.0,36.0,6.9,0.75)
-        @nodo1 = Node.new(@alimento1)
-        @nodo2 = Node.new(@alimento2)
     end
     
 #------------------------------------------------------------------------------------
@@ -102,19 +100,15 @@ RSpec.describe Nutricional_label do
         end
     end
 #------------------------------------------------------------------------------------    
-    describe "# Node: " do
-        it "valor del nodo." do
-            expect(@nodo1.value.to_s)
+    describe "# Dll vacia: " do
+        it "head = nil." do
+            expect(@dll.head).to eq(nil)
         end
-        it "insertar." do
-            expect(@dll.insert(@nodo1))
-            expect(@dll.insert(@nodo2))
+        it "tail = nil." do
+            expect(@dll.tail).to eq(nil)
         end
-        it "actual." do
-           expect(@dll.current).to eq(1)
-        end
-        it "next." do
-           expect(@dll.get_next_n).to eq(false) 
+        it "current = nil." do
+            expect(@dll.current).to eq(nil)
         end
     end 
     
