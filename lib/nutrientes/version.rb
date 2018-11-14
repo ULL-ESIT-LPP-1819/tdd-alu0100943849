@@ -1,3 +1,3 @@
 module Nutrientes
-  VERSION = "0.2.12"
+  VERSION = "0.2.21"
 end
