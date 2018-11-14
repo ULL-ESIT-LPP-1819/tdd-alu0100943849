@@ -40,8 +40,14 @@ class Nutricional_label
         puts "Camtidad de sal                 |" + " #{@sal}g"
     end
     
-    def calificar
-        
+    def clasificar
+        if @sal <= 1
+            "poca" 
+        elsif @sal > 1 and @sal <= 2
+            "media"
+        elsif @sal > 2
+            "mucha"
+        end
     end
     
 end 

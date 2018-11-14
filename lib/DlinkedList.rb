@@ -116,10 +116,19 @@ class DlinkedList
     
     def each
        
+        nodo = @head
+        while nodo != nil
+       
+            yield nodo.value      
+            nodo = nodo.next
+            
+        end
+        
     end
     
     def to_s
         
+       each {|x| puts x}
         
     end
         
