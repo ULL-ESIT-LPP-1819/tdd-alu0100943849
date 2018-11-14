@@ -113,5 +113,14 @@ class DlinkedList
         end
         
     end
+    
+    def each
+       
+    end
+    
+    def to_s
+        
+        
+    end
         
 end

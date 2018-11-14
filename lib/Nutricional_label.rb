@@ -40,4 +40,8 @@ class Nutricional_label
         puts "Camtidad de sal                 |" + " #{@sal}g"
     end
     
+    def calificar
+        
+    end
+    
 end 

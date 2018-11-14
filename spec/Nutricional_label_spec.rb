@@ -130,6 +130,20 @@ RSpec.describe Nutricional_label do
         end
     end
     
+    describe "# cantidad de sal: " do
+        it "poca sal" do
+           expect(@alimento2.clasificar).to eq("poca")
+           expect(@alimento3.clasificar).to eq("poca")
+           expect(@alimento4.clasificar).to eq("poca")
+        end
+        it "cantidad justa de sal" do
+           expect(@alimento1.clasificar).to eq("media")
+        end
+        it "mucha sal" do
+           expect(@alimento5.clasificar).to eq("mucha")
+        end
+    end
+    
     describe "# extraer un alimento: " do
         it "eliminar el ultimo alimento de la lista." do
           expect(@dll.popTail.value).to eq(@alimento5)
