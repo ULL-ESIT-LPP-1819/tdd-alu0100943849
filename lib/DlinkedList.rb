@@ -52,14 +52,66 @@ class DlinkedList
     
     def popHead
         
+        unless @head.nil?
+            
+            aux = @head
+            unless @head.next.nil?
+            
+                @head.next.prev = nil
+                @head = @head.next
+                
+            else
+                
+                @head = nil
+                @tail = nil
+                
+            end
+            aux
+            
+        end
+        
     end
     
     def popTail
+        
+        unless @tail.nil?
+            
+            aux = @tail
+            unless @tail.prev.nil?
+            
+                @tail.prev.next = nil
+                @tail = @tail.prev
+                
+            else
+                
+                @head = nil
+                @tail = nil
+                
+            end
+            aux
+            
+        end
         
     end
     
     def removeAll
         
+        if @head.value.nil? and @tail.value.nil?
+           
+        puts "lista vacia"
+        
+        else
+            
+            while @head != nil
+                
+                aux = @head.next
+                self.popHead
+                @head = aux
+            
+            end
+            
+        end
+        
     end
-    
+        
 end
