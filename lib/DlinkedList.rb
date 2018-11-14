@@ -2,13 +2,13 @@ require 'nutrientes/version'
 
 Node = Struct.new(:value, :next, :prev)
 
-class DlinkedList < Node
+class DlinkedList
     
-    attr_reader :head, :tail, :current
+    attr_reader :head, :tail
     
     def initialize()
         
-        @head = @tail = @current = nil
+        @head = @tail = nil
         
     end
     
@@ -18,16 +18,14 @@ class DlinkedList < Node
         
         if @head.nil?
             
-            @head = n
             @tail = n
-            @current = @head
+            @head = @tail
             
         else
             
             @tail.next = n
             n.prev = @tail
             @tail = n
-            @current = @tail
             
         end
         
@@ -40,17 +38,27 @@ class DlinkedList < Node
         if @head.nil?
             
             @head = n
-            @tail = n
-            @current = @head
+            @tail = @head
             
         else
             
             @head.next = n
             n.prev = @head
             @head = n
-            @current = @head
             
         end
+        
+    end
+    
+    def popHead
+        
+    end
+    
+    def popTail
+        
+    end
+    
+    def removeAll
         
     end
     

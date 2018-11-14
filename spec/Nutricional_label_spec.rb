@@ -5,17 +5,20 @@ RSpec.describe Nutricional_label do
         expect(Nutrientes::VERSION).not_to be nil
     end
     
-    before :each do
+    before :all do
         @dll = DlinkedList.new()
-        @alimento1 = Nutricional_label.new("etiqueta 1",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
-        @alimento2 = Nutricional_label.new("etiqueta 2",9.0,14.0,31.0,36.0,6.9,0.75)
+        @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
+        @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
+        @alimento3 = Nutricional_label.new("yogur de fresa",11.2,0.8,0.1,12.5,1.8,0.1)
+        @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
+        @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
     end
     
 #------------------------------------------------------------------------------------
     
     describe "# Debe existir un nombre para la etiqueta: " do
         it "existe un nombre" do
-            expect(@alimento1.nombre_etiqueta).to eq("etiqueta 1")
+            expect(@alimento1.nombre_etiqueta).to eq("Palmera de chocolate")
         end
     end
     
@@ -51,7 +54,7 @@ RSpec.describe Nutricional_label do
 #------------------------------------------------------------------------------------
     describe "# Nombre de la etiqueta: " do
         it "Existe un metodo para obtener el nombre" do
-            expect(@alimento1.label_name).to eq("etiqueta 1")
+            expect(@alimento1.label_name).to eq("Palmera de chocolate")
         end
     end
     
@@ -107,24 +110,39 @@ RSpec.describe Nutricional_label do
         it "tail = nil." do
             expect(@dll.tail).to eq(nil)
         end
-        it "current = nil." do
-            expect(@dll.current).to eq(nil)
-        end
-    end 
+    end
     
     describe "# insertar un alimento: " do
-        it "el alimento fue insertado por la cola." do
-            @nodo_expect = Node.new(@alimento1)
-            expect(@dll.insertTail(@alimento1)).to eq(@nodo_expect)
+        it "comprobar que head y tail apunta al mismo nodo." do
+            @dll.insertHead(@alimento1)
+            expect(@dll.head.value).to eq(@alimento1)
+            expect(@dll.tail.value).to eq(@alimento1)
         end
-         it "el alimento fue insertado por la cabeza." do
-            @nodo_expect = Node.new(@alimento2)
-            expect(@dll.insertHead(@alimento2)).to eq(@nodo_expect)
+        it "Introducir mas alimentos" do
+            @dll.insertTail(@alimento2)
+            expect(@dll.tail.value).to eq(@alimento2)
+            @dll.insertTail(@alimento3)
+            expect(@dll.tail.value).to eq(@alimento3)
+            @dll.insertTail(@alimento4)
+            expect(@dll.tail.value).to eq(@alimento4)
+            @dll.insertTail(@alimento5)
+            expect(@dll.tail.value).to eq(@alimento5)
         end
     end
     
-    
-    
-    
+    describe "# extraer un alimento: " do
+        it "eliminar el ultimo alimento de la lista." do
+          expect(@dll.popTail.value).to eq(@alimento5)
+        end
+        it "eliminar el primer alimento de la list." do
+          expect(@dll.popHead.value).to eq(@alimento1)
+        end
+        it "Eliminar todos los alimento existente en la lista." do
+          expect(@dll.removeAll).to eq(nil)
+        end
+        it "Eliminar un alimento inexistente de la lista." do
+          expect(@dll.head).to eq(nil)
+        end
+    end
     
 end
