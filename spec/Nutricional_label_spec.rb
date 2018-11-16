@@ -14,7 +14,7 @@ RSpec.describe Nutricional_label do
         @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
     end
     
-#------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------Pruebas para Nutricional_label
     
     describe "# Debe existir un nombre para la etiqueta: " do
         it "existe un nombre" do
@@ -51,7 +51,7 @@ RSpec.describe Nutricional_label do
             expect(@alimento1.sal.nil?).to eq(false)
         end
     end
-#------------------------------------------------------------------------------------
+    
     describe "# Nombre de la etiqueta: " do
         it "Existe un metodo para obtener el nombre" do
             expect(@alimento1.label_name).to eq("Palmera de chocolate")
@@ -99,10 +99,10 @@ RSpec.describe Nutricional_label do
     
     describe "# etiqueta: " do
         it "Existe un metodo para obtener la etiqueta formateada" do
-            expect(@alimento1.to_s)
+            expect(@alimento1.to_s).to eq("Palmera de chocolate")
         end
     end
-#------------------------------------------------------------------------------------    
+#------------------------------------------------------------------------------------Pruebas para double linked list
     describe "# Dll vacia: " do
         it "head = nil." do
             expect(@dll.head).to eq(nil)

@@ -96,12 +96,8 @@ class DlinkedList
     
     def removeAll
         
-        if @head.value.nil? and @tail.value.nil?
-           
-        puts "lista vacia"
+        unless @head.nil?
         
-        else
-            
             while @head != nil
                 
                 aux = @head.next
@@ -109,7 +105,7 @@ class DlinkedList
                 @head = aux
             
             end
-            
+        
         end
         
     end

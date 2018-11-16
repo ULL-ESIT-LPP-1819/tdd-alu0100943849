@@ -38,6 +38,7 @@ class Nutricional_label
         puts "Camtidad de azucares            |" + " #{@azucares}g"
         puts "Camtidad de proteinas           |" + " #{@proteinas}g"
         puts "Camtidad de sal                 |" + " #{@sal}g"
+        @nombre_etiqueta
     end
     
     def clasificar
