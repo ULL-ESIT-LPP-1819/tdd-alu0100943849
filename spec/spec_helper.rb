@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "Nutricional_label"
 require "DlinkedList"
+require "Individuo"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

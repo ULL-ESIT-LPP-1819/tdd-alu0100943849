@@ -158,5 +158,34 @@ RSpec.describe Nutricional_label do
           expect(@dll.head).to eq(nil)
         end
     end
+        
+end
+
+RSpec.describe Individuo do
+    it "has a version number" do
+        expect(Nutrientes::VERSION).not_to be nil
+    end
+    
+    before :all do
+        @paciente = Individuo.new()
+    end
+    
+    describe "# Herencia: " do
+        it "Individuo es una clase(TIPO DE OBJETO)" do
+            expect(Individuo.class).to be_a_kind_of(Class)
+        end
+        it "un objeto paciente es una instancia de la clase Individuo" do
+            expect(@paciente).to be_an_instance_of(Individuo::Individuo)
+        end
+        it "un paciente es un Individuo" do
+          expect(@paciente).to be_a_kind_of(Individuo::Individuo)
+        end
+        it "un paciente es un Object" do
+           expect(@paciente).to be_a_kind_of(Object)
+        end
+        it "un paciente es un BasicObject" do
+           expect(@paciente).to be_a_kind_of(BasicObject)
+        end
+    end
     
 end
