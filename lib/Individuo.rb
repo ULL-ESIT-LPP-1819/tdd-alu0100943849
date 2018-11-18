@@ -3,6 +3,14 @@ require 'Antropometrico'
 
 class Individuo
     
+    def initialize()
+       
+    end
+    
+    def datos_antropometricos
+        
+    end
+    
 end
 
 class No_es_paciente < Individuo
