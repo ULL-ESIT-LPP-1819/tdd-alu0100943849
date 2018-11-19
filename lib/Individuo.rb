@@ -10,6 +10,18 @@ class Individuo
         @datos = nil
     end
     
+    def es (other)
+        if other.is_a? Individuo
+          @nombre == other.nombre
+        elsif
+          false
+        end
+    end
+    
+    def to_s
+        puts "#{nombre}"
+    end
+    
 end
 
 class Pacientes < Individuo
@@ -19,6 +31,22 @@ class Pacientes < Individuo
     def initialize(nombre,datos)
         super(nombre)
         @datos = datos
+    end
+    
+    def == (other)
+        if other.is_a? Individuo
+            nombre == other.nombre
+        elsif
+            false
+        end
+    end
+    
+    def indice_corporal
+        
+    end
+    
+    def to_s
+        "#{nombre} #{indice_corporal}"
     end
 
 end

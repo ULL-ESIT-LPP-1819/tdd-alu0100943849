@@ -214,4 +214,38 @@ RSpec.describe Nutricional_label do
            expect(@paciente).to respond_to('es') 
         end
     end
+ 
+    describe "# Clasificacion por imc: " do
+        before :each do
+            @persona = Individuo.new("Mario Perez")
+            
+            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0))
+            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6))
+            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0))
+            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5))
+            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5))
+            
+            @lista_pacientes = DlinkedList.new()
+            @lista_pacientes.insertTail(@paciente1)
+            @lista_pacientes.insertTail(@paciente2)
+            @lista_pacientes.insertTail(@paciente3)
+            @lista_pacientes.insertTail(@paciente4)
+            @lista_pacientes.insertTail(@paciente5)
+        end
+        it "comprobacion de si un individuo cualquiera es paciente" do
+           expect(@persona.es @paciente1).to eq(false) #Mario Perez no es Pepe Garcia
+        end
+        it "clasificacion por indice de masa corporal" do
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Sobrepeso")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 3")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 1")
+           @lista_pacientes.popHead
+        end
+    end
 end
