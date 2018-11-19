@@ -193,4 +193,25 @@ RSpec.describe Nutricional_label do
         end
     end
     
+    describe "# Tipo: " do
+        before :each do
+          @persona = Individuo.new("Mario Perez")
+          @paciente = Pacientes.new("Pepe Garcia", nil)
+        end
+        it "un objeto persona responde al método nombre" do
+           expect(@persona).to respond_to(:nombre)
+        end
+        it "un objeto persona responde al método .es" do
+           expect(@persona).to respond_to('es') 
+        end
+        it "un objeto paciente responde al método nombre y datos" do
+           expect(@paciente).to respond_to(:nombre, :datos) 
+        end
+        it "un objeto persona responde al método indice_corporal" do
+           expect(@paciente).to respond_to('indice_corporal') 
+        end
+        it "un objeto persona responde al método .es de la clase individuo" do
+           expect(@paciente).to respond_to('es') 
+        end
+    end
 end
