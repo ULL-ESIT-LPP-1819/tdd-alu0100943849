@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "Nutricional_label"
 require "DlinkedList"
+require "Antropometrico"
 require "Individuo"
 
 RSpec.configure do |config|

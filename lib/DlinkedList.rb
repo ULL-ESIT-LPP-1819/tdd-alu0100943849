@@ -119,7 +119,7 @@ class DlinkedList
         nodo = @head
         while nodo != nil
        
-            yield nodo.value      
+            yield nodo.value.indice_corporal   
             nodo = nodo.next
             
         end

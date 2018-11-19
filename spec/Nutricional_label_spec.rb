@@ -12,8 +12,6 @@ RSpec.describe Nutricional_label do
         @alimento3 = Nutricional_label.new("yogur de fresa",11.2,0.8,0.1,12.5,1.8,0.1)
         @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
         @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
-        
-        @paciente = Individuo.new()
     end
     
 #------------------------------------------------------------------------------------
@@ -104,7 +102,7 @@ RSpec.describe Nutricional_label do
             expect(@alimento1.to_s)
         end
     end
-#------------------------------------------------------------------------------------    
+#------------------------------------------------------------------------------------
     describe "# Dll vacia: " do
         it "head = nil." do
             expect(@dll.head).to eq(nil)
@@ -160,20 +158,39 @@ RSpec.describe Nutricional_label do
           expect(@dll.head).to eq(nil)
         end
     end
-    
-    
+#------------------------------------------------------------------------------------     
     describe "# Herencia: " do
-        it "un objeto paciente es una instancia de la clase Individuo" do
-            expect(@paciente).to be_an_instance_of(Individuo::Individuo)
+        before :each do
+            @persona = Individuo.new("Mario Perez")
+            @paciente = Pacientes.new("Pepe Garcia", nil)
+        end  
+        it "una objeto persona es una instancia de la clase Individuo" do
+            expect(@persona).to be_an_instance_of(Individuo::Individuo)
         end
-        it "un paciente es un Individuo" do
-          expect(@paciente).to be_a_kind_of(Individuo::Individuo)
+        it "una persona pertenece a la clase Individuo" do
+          expect(@persona).is_a? Individuo
         end
-        it "un paciente es un Object" do
-           expect(@paciente).to be_a_kind_of(Object)
+        it "una persona pertenece a la clase Object" do
+           expect(@persona).is_a? Object
         end
-        it "un paciente es un BasicObject" do
-           expect(@paciente).to be_a_kind_of(BasicObject)
+        it "una persona pertenece a la clase BasicObject" do
+           expect(@persona).is_a? BasicObject
+        end
+        it "una objeto paciente es una instancia de la clase Pacientes" do
+            expect(@paciente).to be_an_instance_of(Pacientes::Pacientes)
+        end
+        it "una paciente pertenece a la clase Pacientes" do
+          expect(@paciente).is_a? Pacientes
+        end
+        it "una paciente pertenece a la clase Individuo" do
+          expect(@paciente).is_a? Individuo
+        end
+        it "una paciente pertenece a la clase Object" do
+           expect(@paciente).is_a? Object
+        end
+        it "una persopacientena pertenece a la clase BasicObject" do
+           expect(@paciente).is_a? BasicObject
         end
     end
+    
 end

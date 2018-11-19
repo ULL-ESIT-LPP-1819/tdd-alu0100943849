@@ -1,31 +1,27 @@
 require 'nutrientes/version'
 require 'Antropometrico'
 
-class Individuo
+class Individuo 
     
-    def initialize()
-       
+    attr_reader :nombre
+    
+    def initialize(nombre)
+        @nombre = nombre
+        @datos = nil
     end
     
-    def datos_antropometricos
-        
+end
+
+class Pacientes < Individuo
+    
+    attr_reader :datos
+    
+    def initialize(nombre,datos)
+        super(nombre)
+        @datos = datos
     end
-    
-end
-
-class No_es_paciente < Individuo
-    
-end
-
-class Es_pacientes < Individuo
-
-end
-
-class Paciente_obeso_en_tratamiento < Es_pacientes
 
 end
 
 
-class Paciente_no_en_tratamiento < Es_pacientes
 
-end
