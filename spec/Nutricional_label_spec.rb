@@ -102,7 +102,8 @@ RSpec.describe Nutricional_label do
             expect(@alimento1.to_s).to eq("Palmera de chocolate")
         end
     end
-#------------------------------------------------------------------------------------Pruebas para double linked list
+#------------------------------------------------------------------------------------
+
     describe "# Dll vacia: " do
         it "head = nil." do
             expect(@dll.head).to eq(nil)
@@ -158,5 +159,94 @@ RSpec.describe Nutricional_label do
           expect(@dll.head).to eq(nil)
         end
     end
+#------------------------------------------------------------------------------------     
+    describe "# Herencia: " do
+        before :each do
+            @persona = Individuo.new("Mario Perez")
+            @paciente = Pacientes.new("Pepe Garcia", nil)
+        end  
+        it "una objeto persona es una instancia de la clase Individuo" do
+            expect(@persona).to be_an_instance_of(Individuo::Individuo)
+        end
+        it "una persona pertenece a la clase Individuo" do
+          expect(@persona).is_a? Individuo
+        end
+        it "una persona pertenece a la clase Object" do
+           expect(@persona).is_a? Object
+        end
+        it "una persona pertenece a la clase BasicObject" do
+           expect(@persona).is_a? BasicObject
+        end
+        it "una objeto paciente es una instancia de la clase Pacientes" do
+            expect(@paciente).to be_an_instance_of(Pacientes::Pacientes)
+        end
+        it "una paciente pertenece a la clase Pacientes" do
+          expect(@paciente).is_a? Pacientes
+        end
+        it "una paciente pertenece a la clase Individuo" do
+          expect(@paciente).is_a? Individuo
+        end
+        it "una paciente pertenece a la clase Object" do
+           expect(@paciente).is_a? Object
+        end
+        it "una persopacientena pertenece a la clase BasicObject" do
+           expect(@paciente).is_a? BasicObject
+        end
+    end
     
+    describe "# Tipo: " do
+        before :each do
+          @persona = Individuo.new("Mario Perez")
+          @paciente = Pacientes.new("Pepe Garcia", nil)
+        end
+        it "un objeto persona responde al método nombre" do
+           expect(@persona).to respond_to(:nombre)
+        end
+        it "un objeto persona responde al método .es" do
+           expect(@persona).to respond_to('es') 
+        end
+        it "un objeto paciente responde al método nombre y datos" do
+           expect(@paciente).to respond_to(:nombre, :datos) 
+        end
+        it "un objeto persona responde al método indice_corporal" do
+           expect(@paciente).to respond_to('indice_corporal') 
+        end
+        it "un objeto persona responde al método .es de la clase individuo" do
+           expect(@paciente).to respond_to('es') 
+        end
+    end
+ 
+    describe "# Clasificacion por imc: " do
+        before :each do
+            @persona = Individuo.new("Mario Perez")
+            
+            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0))
+            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6))
+            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0))
+            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5))
+            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5))
+            
+            @lista_pacientes = DlinkedList.new()
+            @lista_pacientes.insertTail(@paciente1)
+            @lista_pacientes.insertTail(@paciente2)
+            @lista_pacientes.insertTail(@paciente3)
+            @lista_pacientes.insertTail(@paciente4)
+            @lista_pacientes.insertTail(@paciente5)
+        end
+        it "comprobacion de si un individuo cualquiera es paciente" do
+           expect(@persona.es @paciente1).to eq(false) #Mario Perez no es Pepe Garcia
+        end
+        it "clasificacion por indice de masa corporal" do
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Sobrepeso")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 3")
+           @lista_pacientes.popHead
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 1")
+           @lista_pacientes.popHead
+        end
+    end
 end
