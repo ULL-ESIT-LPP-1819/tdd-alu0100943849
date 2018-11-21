@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nutrientes (0.2.21)
+    nutrientes (0.3.15)
 
 GEM
   remote: https://rubygems.org/
