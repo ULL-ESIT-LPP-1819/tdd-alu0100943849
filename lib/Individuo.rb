@@ -58,7 +58,7 @@ class Pacientes < Individuo
     end
     
     def to_s
-        "#{nombre} #{indice_corporal}"
+        "#{indice_corporal}"
     end
 
 end

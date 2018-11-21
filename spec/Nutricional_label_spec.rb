@@ -216,7 +216,7 @@ RSpec.describe Nutricional_label do
     end
  
     describe "# Clasificacion por imc: " do
-        before :each do
+        before :all do
             @persona = Individuo.new("Mario Perez")
             
             @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0))
@@ -235,16 +235,24 @@ RSpec.describe Nutricional_label do
         it "comprobacion de si un individuo cualquiera es paciente" do
            expect(@persona.es @paciente1).to eq(false) #Mario Perez no es Pepe Garcia
         end
-        it "clasificacion por indice de masa corporal" do
-           expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
+        it "ICM: Peso adecuado" do
+           expect(@lista_pacientes.head.value.to_s).to eq("Peso adecuado")
            @lista_pacientes.popHead
-           expect(@lista_pacientes.head.value.indice_corporal).to eq("Sobrepeso")
+        end
+        it "ICM: Sobrepeso" do
+           expect(@lista_pacientes.head.value.to_s).to eq("Sobrepeso")
            @lista_pacientes.popHead
-           expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
+        end
+        it "ICM: Peso adecuado" do
+            expect(@lista_pacientes.head.value.to_s).to eq("Peso adecuado")
            @lista_pacientes.popHead
-           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 3")
+        end
+         it "ICM: Obesidad grado 3" do
+           expect(@lista_pacientes.head.value.to_s).to eq("Obesidad grado 3")
            @lista_pacientes.popHead
-           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 1")
+        end
+        it "ICM: Obesidad grado 1" do
+           expect(@lista_pacientes.head.value.to_s).to eq("Obesidad grado 1")
            @lista_pacientes.popHead
         end
     end
