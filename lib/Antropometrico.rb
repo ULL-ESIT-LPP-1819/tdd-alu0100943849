@@ -2,6 +2,8 @@ require 'nutrientes/version'
 require 'Individuo'
 
 class Antropometrico
+    
+    include Comparable
    
     attr_reader :peso, :talla, :edad, :sexo, :cintura, :cadera
    
@@ -27,6 +29,10 @@ class Antropometrico
     def rCC
         @rcc = (@cintura/@cadera)
         @rcc.round(2)
+    end
+    
+    def <=>(other)
+        indice_masa_corporal <=> other.indice_masa_corporal
     end
     
     def to_s
