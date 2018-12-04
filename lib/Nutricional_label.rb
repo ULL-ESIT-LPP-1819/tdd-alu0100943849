@@ -2,6 +2,8 @@ require 'nutrientes/version'
 require 'DlinkedList'
 
 class Nutricional_label
+    
+    include Comparable
 
     attr_reader :nombre_etiqueta, :grasa, :grasa_saturada, :hid_carbono, :azucares, :proteinas, :sal
     
@@ -38,6 +40,10 @@ class Nutricional_label
         puts "Camtidad de azucares            |" + " #{@azucares}g"
         puts "Camtidad de proteinas           |" + " #{@proteinas}g"
         puts "Camtidad de sal                 |" + " #{@sal}g"
+    end
+    
+    def <=>(other)
+        energetic_value_Kcal <=> other.energetic_value_Kcal
     end
     
     def clasificar
