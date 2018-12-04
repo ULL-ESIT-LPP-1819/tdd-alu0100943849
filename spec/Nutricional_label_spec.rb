@@ -323,4 +323,35 @@ RSpec.describe Comparable do
         end
     end
     
+    describe "# Comparar la valoracion nutricional de los individuos: " do
+        before :all do
+            @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0)
+            @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6)
+            @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0)
+            @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5)
+            @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5)
+        end
+        it "comparacion mediante <=>." do
+            expect(@datos1 <=> @datos3).to eq(1)
+        end
+        it "comparacion mediante <." do
+            expect(@datos3 < @datos5).to eq(true)
+        end
+        it "comparacion mediante >." do
+            expect(@datos1 > @datos2).to eq(false)
+        end
+        it "comparacion mediante ==." do
+            expect(@datos3 == @datos3).to eq(true)
+        end
+        it "comparacion mediante >=." do
+            expect(@datos5 >= @datos3).to eq(true)
+        end
+        it "comparacion mediante <=." do
+            expect(@datos3 <= @datos5).to eq(true)
+        end
+        it "comparacion mediante between?." do
+            expect(@datos4.between?(@datos3, @datos5)).to eq(false)
+        end
+    end
+    
 end
