@@ -396,5 +396,36 @@ RSpec.describe Enumerable do
             expect(@lista_etiquetas.sort  {|alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq([@alimento1, @alimento5, @alimento2, @alimento3, @alimento4])
         end
     end
-
+    
+    describe "# Enumerar listas de valoraciones nutricionales de individuos: " do
+        before :all do
+            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0))
+            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6))
+            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0))
+            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5))
+            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5))
+            
+            @lista_pacientes = DlinkedList.new()
+            @lista_pacientes.insertTail(@paciente1)
+            @lista_pacientes.insertTail(@paciente2)
+            @lista_pacientes.insertTail(@paciente3)
+            @lista_pacientes.insertTail(@paciente4)
+            @lista_pacientes.insertTail(@paciente5)
+        end
+        it "collect" do
+            expect(@lista_pacientes.collect { |lista_pacientes| lista_pacientes.to_s}).to eq(["24.8", "27.9", "19.4", "41.6", "33.3"])
+        end
+        it "select" do
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.to_s == "24.8"}).to eq([@paciente1])
+        end
+        it "max" do
+            expect(@lista_pacientes.max { |paciente1, paciente5| paciente1.datos.indice_masa_corporal <=> paciente5.datos.indice_masa_corporal }).to eq(@paciente4)
+        end 
+        it "min" do
+            expect(@lista_pacientes.min { |paciente1, paciente5| paciente1.datos.indice_masa_corporal <=> paciente5.datos.indice_masa_corporal }).to eq(@paciente3)
+        end
+         it "sort" do
+            expect(@lista_pacientes.sort  {|paciente1, paciente5| paciente1.datos.indice_masa_corporal <=> paciente5.datos.indice_masa_corporal }).to eq([@paciente3, @paciente1, @paciente2, @paciente5, @paciente4])
+        end
+    end
 end

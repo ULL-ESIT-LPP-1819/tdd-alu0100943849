@@ -56,7 +56,7 @@ class Nutricional_label
         end
     end
     
-    def to_s
+        def to_s
     
         "#{@kcal}"
     

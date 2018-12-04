@@ -4,6 +4,8 @@ Node = Struct.new(:value, :next, :prev)
 
 class DlinkedList
     
+    include Enumerable
+    
     attr_reader :head, :tail
     
     def initialize()
