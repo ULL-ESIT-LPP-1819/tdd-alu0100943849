@@ -3,7 +3,7 @@ require 'Individuo'
 
 class Antropometrico
    
-   attr_reader :peso, :talla, :edad, :sexo, :cintura, :cadera
+    attr_reader :peso, :talla, :edad, :sexo, :cintura, :cadera
    
     def initialize(sexo, peso,talla,edad,cintura,cadera)
         @sexo = sexo
@@ -30,8 +30,6 @@ class Antropometrico
     end
     
     def to_s
-        "#{@imc}"
-        "#{@resul}"
-        "#{@rcc}"
+        "#{@imc}, #{@resul}, #{@rcc}"
     end
 end

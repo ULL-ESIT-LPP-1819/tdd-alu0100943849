@@ -119,7 +119,7 @@ class DlinkedList
         nodo = @head
         while nodo != nil
        
-            yield nodo  
+            yield nodo.value
             nodo = nodo.next
             
         end
@@ -129,7 +129,7 @@ class DlinkedList
     def to_s
         
        each {|x| puts x}
-        
+       
     end
         
 end

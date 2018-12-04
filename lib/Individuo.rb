@@ -22,6 +22,7 @@ class Individuo
         puts "#{nombre}"
     end
     
+    
 end
 
 class Pacientes < Individuo
@@ -58,7 +59,7 @@ class Pacientes < Individuo
     end
     
     def to_s
-        "#{indice_corporal}"
+        "#{@datos.indice_masa_corporal}"
     end
 
 end

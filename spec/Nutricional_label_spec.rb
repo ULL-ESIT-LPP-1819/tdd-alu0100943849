@@ -1,20 +1,19 @@
 require 'spec_helper'
 
+#----------------------------------------pruebas para la etiquetas nutricionales--------------------------------------------
+
 RSpec.describe Nutricional_label do
     it "has a version number" do
         expect(Nutrientes::VERSION).not_to be nil
     end
     
     before :all do
-        @dll = DlinkedList.new()
         @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
         @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
         @alimento3 = Nutricional_label.new("yogur de fresa",11.2,0.8,0.1,12.5,1.8,0.1)
         @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
         @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
     end
-    
-#------------------------------------------------------------------------------------
     
     describe "# Debe existir un nombre para la etiqueta: " do
         it "existe un nombre" do
@@ -51,7 +50,7 @@ RSpec.describe Nutricional_label do
             expect(@alimento1.sal.nil?).to eq(false)
         end
     end
-#------------------------------------------------------------------------------------
+    
     describe "# Nombre de la etiqueta: " do
         it "Existe un metodo para obtener el nombre" do
             expect(@alimento1.label_name).to eq("Palmera de chocolate")
@@ -99,10 +98,25 @@ RSpec.describe Nutricional_label do
     
     describe "# etiqueta: " do
         it "Existe un metodo para obtener la etiqueta formateada" do
-            expect(@alimento1.to_s)
+            expect(@alimento1.print_label)
         end
     end
-#------------------------------------------------------------------------------------
+end
+#----------------------------------------pruebas para la lista doblemente enlazada--------------------------------------------
+RSpec.describe DlinkedList do
+    it "has a version number" do
+        expect(Nutrientes::VERSION).not_to be nil
+    end
+    
+    before :all do
+        @dll = DlinkedList.new()
+        @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
+        @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
+        @alimento3 = Nutricional_label.new("yogur de fresa",11.2,0.8,0.1,12.5,1.8,0.1)
+        @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
+        @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
+    end
+    
     describe "# Dll vacia: " do
         it "head = nil." do
             expect(@dll.head).to eq(nil)
@@ -158,7 +172,21 @@ RSpec.describe Nutricional_label do
           expect(@dll.head).to eq(nil)
         end
     end
-#------------------------------------------------------------------------------------     
+end
+#----------------------------------------pruebas de herencia de individuos--------------------------------------------
+RSpec.describe Individuo do
+    it "has a version number" do
+        expect(Nutrientes::VERSION).not_to be nil
+    end
+    
+    before :all do
+        @dll = DlinkedList.new()
+        @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
+        @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
+        @alimento3 = Nutricional_label.new("yogur de fresa",11.2,0.8,0.1,12.5,1.8,0.1)
+        @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
+        @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
+    end
     describe "# Herencia: " do
         before :each do
             @persona = Individuo.new("Mario Perez")
@@ -236,24 +264,63 @@ RSpec.describe Nutricional_label do
            expect(@persona.es @paciente1).to eq(false) #Mario Perez no es Pepe Garcia
         end
         it "ICM: Peso adecuado" do
-           expect(@lista_pacientes.head.value.to_s).to eq("Peso adecuado")
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
            @lista_pacientes.popHead
         end
         it "ICM: Sobrepeso" do
-           expect(@lista_pacientes.head.value.to_s).to eq("Sobrepeso")
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Sobrepeso")
            @lista_pacientes.popHead
         end
         it "ICM: Peso adecuado" do
-            expect(@lista_pacientes.head.value.to_s).to eq("Peso adecuado")
+            expect(@lista_pacientes.head.value.indice_corporal).to eq("Peso adecuado")
            @lista_pacientes.popHead
         end
          it "ICM: Obesidad grado 3" do
-           expect(@lista_pacientes.head.value.to_s).to eq("Obesidad grado 3")
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 3")
            @lista_pacientes.popHead
         end
         it "ICM: Obesidad grado 1" do
-           expect(@lista_pacientes.head.value.to_s).to eq("Obesidad grado 1")
+           expect(@lista_pacientes.head.value.indice_corporal).to eq("Obesidad grado 1")
            @lista_pacientes.popHead
         end
     end
+end
+#------------------------------------------pruebas comparable----------------------------------------------
+RSpec.describe Comparable do
+    it "has a version number" do
+        expect(Nutrientes::VERSION).not_to be nil
+    end
+    
+    describe "# Comparar Valor Energetico de las etiquetas de informacion nutricional: " do
+        before :each do
+            @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
+            @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
+            @alimento3 = Nutricional_label.new("yogur de fresa",11.2,0.8,0.1,12.5,1.8,0.1)
+            @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
+            @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
+            @alimento6 = Nutricional_label.new("rosquillas",9.0,14.0,31.0,36.0,6.9,0.75)
+        end
+        it "comparacion por KJ mediante <=>." do
+            expect(@alimento1 <=> @alimento5).to eq(-1)
+        end
+        it "comparacion por KJ mediante <." do
+            expect(@alimento3 < @alimento4).to eq(true)
+        end
+        it "comparacion por KJ mediante >." do
+            expect(@alimento3 > @alimento5).to eq(false)
+        end
+        it "comparacion por KJ mediante ==." do
+            expect(@alimento2 == @alimento6).to eq(true)
+        end
+        it "comparacion por KJ mediante >=." do
+            expect(@alimento6 >= @alimento2).to eq(true)
+        end
+        it "comparacion por KJ mediante <=." do
+            expect(@alimento3 <= @alimento4).to eq(true)
+        end
+        it "comparacion por KJ mediante between?." do
+            expect(@alimento4.between?(@alimento3, @alimento5)).to eq(true)
+        end
+    end
+    
 end
