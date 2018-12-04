@@ -355,3 +355,46 @@ RSpec.describe Comparable do
     end
     
 end
+#--------------------------------------------pruebas enumerable-------------------------------------------
+
+RSpec.describe Enumerable do
+    it "has a version number" do
+        expect(Nutrientes::VERSION).not_to be nil
+    end
+    
+    
+    
+     describe "# Enumerar listas de etiquetas de informacion nutricional: " do
+        before :all do
+            @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
+            @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
+            @alimento3 = Nutricional_label.new("yogur de fresa",11.2,0.8,0.1,12.5,1.8,0.1)
+            @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
+            @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
+            
+            @lista_etiquetas = DlinkedList.new()
+            @lista_etiquetas.insertTail(@alimento1)
+            @lista_etiquetas.insertTail(@alimento2)
+            @lista_etiquetas.insertTail(@alimento3)
+            @lista_etiquetas.insertTail(@alimento4)
+            @lista_etiquetas.insertTail(@alimento5)
+        end
+         
+       it "collect" do
+            expect(@lista_etiquetas.collect { |lista_etiquetas| lista_etiquetas}).to eq([@alimento1, @alimento2, @alimento3, @alimento4, @alimento5])
+        end
+        it "select" do
+            expect(@lista_etiquetas.select { |lista_etiquetas| lista_etiquetas.clasificar == "poca"}).to eq([@alimento2, @alimento3, @alimento4])
+        end
+        it "max" do
+            expect(@lista_etiquetas.max { |alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq(@alimento2)
+        end 
+        it "min" do
+            expect(@lista_etiquetas.min { |alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq(@alimento1)
+        end
+         it "sort" do
+            expect(@lista_etiquetas.sort  {|alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq([@alimento1, @alimento5, @alimento2, @alimento3, @alimento4])
+        end
+    end
+
+end
