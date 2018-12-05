@@ -1,5 +1,9 @@
+# @author Carlos Arvelo Garcia (alu0100943849)
+
 require 'nutrientes/version'
 require 'Antropometrico'
+
+#Clase Individuo almacena los datos de un individuo
 
 class Individuo 
     
@@ -10,6 +14,13 @@ class Individuo
         @datos = nil
     end
     
+    # Comprueba si el Tipo de un objeto es de tipo Individuo
+    #
+    # == Parameters:
+    # Recibe un objeto
+    #
+    # == Returns:
+    # Retorna true o false
     def es (other)
         if other.is_a? Individuo
           @nombre == other.nombre
@@ -18,9 +29,17 @@ class Individuo
         end
     end
     
+    # Define el metodo para imprimir por pantalla 
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un string con el contenido de las variables
     def to_s
         puts "#{nombre}"
     end
+    
     
 end
 
@@ -41,6 +60,13 @@ class Pacientes < Individuo
         end
     end
     
+    # Comprueba entre que valores esta el icm de un pacuente y determina su estado corporal
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un string con el peso del paciente
     def indice_corporal
         if @datos.indice_masa_corporal <= 18.5
             "Bajo peso"
@@ -57,8 +83,15 @@ class Pacientes < Individuo
         end
     end
     
+    # Define el metodo para imprimir por pantalla 
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un string con el contenido de las variables
     def to_s
-        "#{indice_corporal}"
+        "#{@datos.indice_masa_corporal}"
     end
 
 end
