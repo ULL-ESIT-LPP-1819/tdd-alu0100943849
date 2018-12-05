@@ -1,6 +1,12 @@
+# @author Carlos Arvelo Garcia (alu0100943849)
+
 require 'nutrientes/version'
 
+#Struct Node almacena los datos antropometricos
+
 Node = Struct.new(:value, :next, :prev)
+
+#Clase DlinkedList almacena los datos en una lista
 
 class DlinkedList
     
@@ -14,6 +20,13 @@ class DlinkedList
         
     end
     
+    # Inserta por la cola de la lista un nodo
+    #
+    # == Parameters:
+    # Recive un valor o dato que se quiera insertar
+    #
+    # == Returns:
+    # No retorna nada
     def insertTail(value)
         
         n = Node.new(value)
@@ -33,6 +46,13 @@ class DlinkedList
         
     end
     
+    # Inserta por la cabeza de la lista un nodo
+    #
+    # == Parameters:
+    # Recive un valor o dato que se quiera insertar
+    #
+    # == Returns:
+    # No retorna nada
     def insertHead(value)
         
         n = Node.new(value)
@@ -52,6 +72,13 @@ class DlinkedList
         
     end
     
+    # Extrae por la cabeza de la lista un nodo
+    #
+    # == Parameters:
+    # No recibe nada
+    #
+    # == Returns:
+    # Retorna el nodo extraido
     def popHead
         
         unless @head.nil?
@@ -74,6 +101,13 @@ class DlinkedList
         
     end
     
+    # Extrae por la cola de la lista un nodo
+    #
+    # == Parameters:
+    # No recibe nada
+    #
+    # == Returns:
+    # Retorna el nodo extraido
     def popTail
         
         unless @tail.nil?
@@ -96,6 +130,13 @@ class DlinkedList
         
     end
     
+    # Extrae por la cabeza de la lista todos los nodos que quedan en la lista si no esta vacia
+    #
+    # == Parameters:
+    # No recibe nada
+    #
+    # == Returns:
+    # Retorna los nodos extraidos
     def removeAll
         
         if @head.value.nil? and @tail.value.nil?
@@ -109,13 +150,20 @@ class DlinkedList
                 aux = @head.next
                 self.popHead
                 @head = aux
-            
+                aux
             end
             
         end
         
     end
     
+    # Recorre la lista desde la cabeza hasta a cola
+    #
+    # == Parameters:
+    # No recibe nada
+    #
+    # == Returns:
+    # No retorna nada
     def each
        
         nodo = @head
@@ -128,6 +176,13 @@ class DlinkedList
         
     end
     
+    # Define el metodo para imprimir por pantalla 
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un string con el contenido de las variables
     def to_s
         
        each {|x| puts x}
