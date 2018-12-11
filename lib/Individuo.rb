@@ -21,7 +21,7 @@ class Individuo
     #
     # == Returns:
     # Retorna true o false
-    def es (other)
+    def es(other)
         if other.is_a? Individuo
           @nombre == other.nombre
         elsif
@@ -45,14 +45,15 @@ end
 
 class Pacientes < Individuo
     
-    attr_reader :datos
+    attr_reader :datos, :actividad_fisica
     
-    def initialize(nombre,datos)
+    def initialize(nombre,datos, actividad_fisica)
         super(nombre)
-        @datos = datos
+        @datos = datos #datos antropometricos
+        @actividad_fisica = actividad_fisica
     end
     
-    def == (other)
+    def ==(other)
         if other.is_a? Individuo
             nombre == other.nombre
         elsif
