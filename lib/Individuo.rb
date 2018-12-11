@@ -84,6 +84,57 @@ class Pacientes < Individuo
         end
     end
     
+    # Define el metodo para calcular el peso teorico ideal
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un float con el resultado de la operacion
+    def peso_teorico_ideal
+       ((@datos.talla * 100) - 150) * 0.75 + 50 
+    end
+    
+    def gasto_energetico_basal
+        
+        if @datos.sexo == 0
+
+            (10 * @datos.peso) + (6.25 * @datos.talla) - (5 * @datos.edad) - 161
+            
+        elsif @datos.sexo == 1
+        
+            (10 * @datos.peso) + (6.25 * @datos.talla) - (5 * @datos.edad) + 5
+        
+        end
+        
+    end
+    
+    def efecto_termogeno
+        
+        gasto_energetico_basal * 0.10
+        
+    end
+    
+    def gasto_actividad_fisica
+        
+        if @actividad_fisica == "reposo"
+            gasto_energetico_basal * 0.0
+        elsif @actividad_fisica == "ligera"
+            gasto_energetico_basal * 0.12
+        elsif @actividad_fisica == "moderada"
+            gasto_energetico_basal * 0.27
+        elsif @actividad_fisica == "intensa"
+            gasto_energetico_basal * 0.54
+        end
+        
+    end
+    
+    def gasto_energetico_total
+        
+        gasto_energetico_basal + efecto_termogeno + gasto_actividad_fisica
+        
+    end
+    
     # Define el metodo para imprimir por pantalla 
     #
     # == Parameters:
