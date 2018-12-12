@@ -95,6 +95,13 @@ class Pacientes < Individuo
        ((@datos.talla * 100) - 150) * 0.75 + 50 
     end
     
+    # Define el metodo para calcular el gasto_energetico_basal
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un float con el resultado de la operacion
     def gasto_energetico_basal
         
         if @datos.sexo == 0
@@ -109,12 +116,26 @@ class Pacientes < Individuo
         
     end
     
+        # Define el metodo para calcular el efecto_termogeno
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un float con el resultado de la operacion
     def efecto_termogeno
         
         gasto_energetico_basal * 0.10
         
     end
     
+        # Define el metodo para calcular el gasto_actividad_fisica
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un float con el resultado de la operacion
     def gasto_actividad_fisica
         
         if @actividad_fisica == "reposo"
@@ -129,6 +150,13 @@ class Pacientes < Individuo
         
     end
     
+        # Define el metodo para calcular el gasto_energetico_total
+    #
+    # == Parameters:
+    # No recibe ninguno
+    #
+    # == Returns:
+    # Un float con el resultado de la operacion
     def gasto_energetico_total
         
         gasto_energetico_basal + efecto_termogeno + gasto_actividad_fisica
