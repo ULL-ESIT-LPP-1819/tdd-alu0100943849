@@ -55,7 +55,7 @@ RSpec.describe Nutricional_label do
     
     describe "# Nombre de la etiqueta: " do
         it "Existe un metodo para obtener el nombre" do
-            expect(@alimento1.label_name).to eq("Palmera de chocolate")
+            expect(@alimento1.nombre_etiqueta).to eq("Palmera de chocolate")
         end
     end
     
@@ -192,7 +192,7 @@ RSpec.describe Individuo do
     describe "# Herencia: " do
         before :each do
             @persona = Individuo.new("Mario Perez")
-            @paciente = Pacientes.new("Pepe Garcia", nil)
+            @paciente = Pacientes.new("Pepe Garcia", nil, nil)
         end  
         it "una objeto persona es una instancia de la clase Individuo" do
             expect(@persona).to be_an_instance_of(Individuo::Individuo)
@@ -226,7 +226,7 @@ RSpec.describe Individuo do
     describe "# Tipo: " do
         before :each do
           @persona = Individuo.new("Mario Perez")
-          @paciente = Pacientes.new("Pepe Garcia", nil)
+          @paciente = Pacientes.new("Pepe Garcia", nil, nil)
         end
         it "un objeto persona responde al método nombre" do
            expect(@persona).to respond_to(:nombre)
@@ -249,11 +249,11 @@ RSpec.describe Individuo do
         before :all do
             @persona = Individuo.new("Mario Perez")
             
-            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0))
-            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6))
-            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0))
-            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5))
-            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5))
+            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0), nil)
+            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6), nil)
+            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0), nil)
+            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5), nil)
+            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5), nil)
             
             @lista_pacientes = DlinkedList.new()
             @lista_pacientes.insertTail(@paciente1)
@@ -302,25 +302,26 @@ RSpec.describe Comparable do
             @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
             @alimento6 = Nutricional_label.new("rosquillas",9.0,14.0,31.0,36.0,6.9,0.75)
         end
-        it "comparacion por KJ mediante <=>." do
+        it "comparacion por Kcal mediante <=>." do
             expect(@alimento1 <=> @alimento5).to eq(-1)
         end
-        it "comparacion por KJ mediante <." do
+        it "comparacion por Kcal mediante <." do
             expect(@alimento3 < @alimento4).to eq(true)
         end
-        it "comparacion por KJ mediante >." do
+        it "comparacion por Kcal mediante >." do
             expect(@alimento3 > @alimento5).to eq(false)
         end
-        it "comparacion por KJ mediante ==." do
+        it "comparacion por Kcal mediante ==." do
             expect(@alimento2 == @alimento6).to eq(true)
         end
-        it "comparacion por KJ mediante >=." do
+        it "comparacion por Kcal mediante >=." do
             expect(@alimento6 >= @alimento2).to eq(true)
         end
-        it "comparacion por KJ mediante <=." do
+        it "comparacion por Kcal mediante <=." do
             expect(@alimento3 <= @alimento4).to eq(true)
         end
-        it "comparacion por KJ mediante between?." do
+        it "comparacion por Kcal
+        mediante between?." do
             expect(@alimento4.between?(@alimento3, @alimento5)).to eq(true)
         end
     end
@@ -374,38 +375,39 @@ RSpec.describe Enumerable do
             @alimento4 = Nutricional_label.new("Chuleta de cerdo",20.0,0.0,14.0,0.0,36.0,0.75)
             @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
             
-            @lista_etiquetas = DlinkedList.new()
-            @lista_etiquetas.insertTail(@alimento1)
-            @lista_etiquetas.insertTail(@alimento2)
-            @lista_etiquetas.insertTail(@alimento3)
-            @lista_etiquetas.insertTail(@alimento4)
-            @lista_etiquetas.insertTail(@alimento5)
+            @lista_alimentos = DlinkedList.new()
+            @lista_alimentos.insertTail(@alimento1)
+            @lista_alimentos.insertTail(@alimento2)
+            @lista_alimentos.insertTail(@alimento3)
+            @lista_alimentos.insertTail(@alimento4)
+            @lista_alimentos.insertTail(@alimento5)
         end
          
        it "collect" do
-            expect(@lista_etiquetas.collect { |lista_etiquetas| lista_etiquetas}).to eq([@alimento1, @alimento2, @alimento3, @alimento4, @alimento5])
+            expect(@lista_alimentos.collect { |lista_alimentos| lista_alimentos}).to eq([@alimento1, @alimento2, @alimento3, @alimento4, @alimento5])
         end
         it "select" do
-            expect(@lista_etiquetas.select { |lista_etiquetas| lista_etiquetas.clasificar == "poca"}).to eq([@alimento2, @alimento3, @alimento4])
+            expect(@lista_alimentos.select { |lista_alimentos| lista_alimentos.clasificar == "poca"}).to eq([@alimento2, @alimento3, @alimento4])
         end
         it "max" do
-            expect(@lista_etiquetas.max { |alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq(@alimento2)
+            expect(@lista_alimentos.max { |alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq(@alimento2)
         end 
         it "min" do
-            expect(@lista_etiquetas.min { |alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq(@alimento1)
+            expect(@lista_alimentos.min { |alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq(@alimento1)
         end
          it "sort" do
-            expect(@lista_etiquetas.sort  {|alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq([@alimento1, @alimento5, @alimento2, @alimento3, @alimento4])
+            expect(@lista_alimentos.sort  {|alimento1, alimento5| alimento1.clasificar <=> alimento5.clasificar }).to eq([@alimento1, @alimento5, @alimento2, @alimento3, @alimento4])
         end
     end
     
     describe "# Enumerar listas de valoraciones nutricionales de individuos: " do
         before :all do
-            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0))
-            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6))
-            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0))
-            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5))
-            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5))
+            
+            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0), nil)
+            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6), nil)
+            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0), nil)
+            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5), nil)
+            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5), nil)
             
             @lista_pacientes = DlinkedList.new()
             @lista_pacientes.insertTail(@paciente1)
@@ -413,6 +415,7 @@ RSpec.describe Enumerable do
             @lista_pacientes.insertTail(@paciente3)
             @lista_pacientes.insertTail(@paciente4)
             @lista_pacientes.insertTail(@paciente5)
+            
         end
         it "collect" do
             expect(@lista_pacientes.collect { |lista_pacientes| lista_pacientes.to_s}).to eq(["24.8", "27.9", "19.4", "41.6", "33.3"])
@@ -426,8 +429,86 @@ RSpec.describe Enumerable do
         it "min" do
             expect(@lista_pacientes.min { |paciente1, paciente5| paciente1.datos.indice_masa_corporal <=> paciente5.datos.indice_masa_corporal }).to eq(@paciente3)
         end
-         it "sort" do
+        it "sort" do
             expect(@lista_pacientes.sort  {|paciente1, paciente5| paciente1.datos.indice_masa_corporal <=> paciente5.datos.indice_masa_corporal }).to eq([@paciente3, @paciente1, @paciente2, @paciente5, @paciente4])
         end
     end
+end
+
+RSpec.describe Pacientes do
+    it "has a version number" do
+        expect(Nutrientes::VERSION).not_to be nil
+    end
+    
+    describe "# indicadores energeticos del individuo: " do
+        before :all do
+            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0), "moderada")
+        end
+        it "actividad fisica" do
+            expect(@paciente1.actividad_fisica).to eq("moderada")
+        end
+        it "peso teorico ideal" do
+            expect(@paciente1.peso_teorico_ideal).to eq(68.75)
+        end
+        it "efecto termogeno" do
+            expect(@paciente1.efecto_termogeno).to eq(66.59375)
+        end
+        it "gasto actividad fisica" do
+            expect(@paciente1.gasto_actividad_fisica).to eq(179.80312500000002)
+        end
+        it "gasto energetico total" do
+            expect(@paciente1.gasto_energetico_total).to eq(912.334375)
+        end
+    end
+    
+    describe "# Gasto energetico total del individuo: " do
+        before :all do
+            
+            #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
+            @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) 
+            @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
+            @alimento3 = Nutricional_label.new("yogur",11.2,0.8,0.1,12.5,1.8,0.1)
+            @alimento4 = Nutricional_label.new("Chuleta de cerdo",1.0,0.0,14.0,0.0,36.0,0.75)
+            @alimento5 = Nutricional_label.new("Hamburguesa",15.0,11.0,35.0,8.0,26.9,2.75)
+            @alimento6 = Nutricional_label.new("Pizza",12.4, 5.3, 35.0, 7.0, 4.6, 1.75)
+            @alimento7 = Nutricional_label.new("Ensalada",0.2,0.0,6.8,4.7,0.9,0.17)
+            @alimento8 = Nutricional_label.new("Almendras",54.1,0.0,5.36,0.0,18.71,0.5)
+            @alimento9 = Nutricional_label.new("Arroz",0.7,0.2,1.6,0.0,6.67,0.75)
+            @alimento10 = Nutricional_label.new("Pasta",1.8,0.4,77.0,1.0,7.5,0.02)
+            
+            @lista_alimentos1 = [@alimento1, @alimento2, @alimento3, @alimento5, @alimento4]
+            @lista_alimentos2 = [@alimento6, @alimento7, @alimento8, @alimento9, @alimento10]
+            @lista_alimentos3 = [@alimento1, @alimento7, @alimento3, @alimento2, @alimento5]
+            @lista_alimentos4 = [@alimento7, @alimento1, @alimento7, @alimento4, @alimento7]
+            @lista_alimentos5 = [@alimento3, @alimento4, @alimento7, @alimento1, @alimento8]
+            
+            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0), "moderada")
+            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6), "reposo")
+            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0), "ligera")
+            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5), "intensa")
+            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5), "moderada")
+            
+            @lista_pacientes = [@paciente1, @paciente2, @paciente3, @paciente4, @paciente5]
+            
+        end
+        it "pacientes a los que el menu 1 les vale" do
+            #expect(@lista_alimentos1.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }).to be_between(@paciente1.gasto_energetico_total-(@paciente1.gasto_energetico_total*0.1), @paciente1.gasto_energetico_total+(@paciente1.gasto_energetico_total*0.1)).inclusive
+            #expect(@lista_alimentos1.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }).to be_within(900).of(1003.5)
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos1.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
+        end
+        it "pacientes a los que el menu 2 les vale" do
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos2.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente5])
+        end
+        it "pacientes a los que el menu 3 les vale" do
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos3.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
+        end
+        it "pacientes a los que el menu 4 les vale" do
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos4.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente2, @paciente3])
+        end
+        it "pacientes a los que el menu 5 les vale" do
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos5.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
+        end
+        
+    end
+    
 end

@@ -11,7 +11,7 @@ class Nutricional_label
 
     attr_reader :nombre_etiqueta, :grasa, :grasa_saturada, :hid_carbono, :azucares, :proteinas, :sal
     
-    def initialize (nombre_etiqueta,grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal)
+    def initialize(nombre_etiqueta,grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal)
         @nombre_etiqueta = nombre_etiqueta
         @grasa = grasa
         @grasa_saturada = grasa_saturada
@@ -19,6 +19,19 @@ class Nutricional_label
         @azucares = azucares
         @proteinas = proteinas
         @sal = sal
+    end
+    
+    # nombre de la comida
+    #
+    # == Parameters:
+    # No recibe parametros
+    #
+    # == Returns:
+    # el nombre de la etiqueta almacenado el la variable nombre_etiqueta
+    def label_name
+        
+        nombre_etiqueta 
+        
     end
     
     # Calcula el valor energetico de un alimento en KJ
@@ -70,7 +83,7 @@ class Nutricional_label
     # Recibe un parametro de tipo Nutricional_label
     #
     # == Returns:
-    # Un balor booleano dependiendo del resultado de la operacion
+    # Un valor booleano dependiendo del resultado de la operacion
     def <=>(other)
         energetic_value_Kcal <=> other.energetic_value_Kcal
     end
