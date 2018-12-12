@@ -150,7 +150,7 @@ class Pacientes < Individuo
         
     end
     
-        # Define el metodo para calcular el gasto_energetico_total
+    # Define el metodo para calcular el gasto_energetico_total
     #
     # == Parameters:
     # No recibe ninguno

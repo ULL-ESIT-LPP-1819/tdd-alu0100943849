@@ -359,7 +359,6 @@ RSpec.describe Comparable do
     
 end
 #--------------------------------------------pruebas enumerable-------------------------------------------
-
 RSpec.describe Enumerable do
     it "has a version number" do
         expect(Nutrientes::VERSION).not_to be nil
@@ -434,7 +433,7 @@ RSpec.describe Enumerable do
         end
     end
 end
-
+#--------------------------------------------pruebas pacientes-------------------------------------------
 RSpec.describe Pacientes do
     it "has a version number" do
         expect(Nutrientes::VERSION).not_to be nil
