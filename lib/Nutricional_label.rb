@@ -118,5 +118,3 @@ class Nutricional_label
     end
     
 end 
-
-    

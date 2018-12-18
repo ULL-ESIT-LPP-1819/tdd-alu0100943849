@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'benchmark'
 
 #----------------------------------------pruebas para la etiquetas nutricionales--------------------------------------------
 
@@ -464,9 +463,6 @@ RSpec.describe Pacientes do
         before :all do
             
             #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
-           
-            
-            
             @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) 
             @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
             @alimento3 = Nutricional_label.new("yogur",11.2,0.8,0.1,12.5,1.8,0.1)
@@ -483,11 +479,6 @@ RSpec.describe Pacientes do
             @lista_alimentos3 = [@alimento1, @alimento7, @alimento3, @alimento2, @alimento5]
             @lista_alimentos4 = [@alimento7, @alimento1, @alimento7, @alimento4, @alimento7]
             @lista_alimentos5 = [@alimento3, @alimento4, @alimento7, @alimento1, @alimento8]
-            @lista_alimentos6 = [@alimento1, @alimento4, @alimento4, @alimento5, @alimento4]
-            @lista_alimentos7 = [@alimento6, @alimento6, @alimento8, @alimento9, @alimento10]
-            @lista_alimentos8 = [@alimento1, @alimento8, @alimento3, @alimento2, @alimento5]
-            @lista_alimentos9 = [@alimento7, @alimento4, @alimento7, @alimento4, @alimento7]
-            @lista_alimentos10 = [@alimento3, @alimento4, @alimento7, @alimento4, @alimento4]
             
             @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0), "moderada")
             @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6), "reposo")
@@ -495,87 +486,27 @@ RSpec.describe Pacientes do
             @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5), "intensa")
             @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5), "moderada")
             
-            @lista_menu = [@lista_alimentos1,  @lista_alimentos2, @lista_alimentos3, @lista_alimentos4, @lista_alimentos5, @lista_alimentos6,  @lista_alimentos7, @lista_alimentos8, @lista_alimentos9, @lista_alimentos10]
-            
-            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0), "moderada")
-            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6), "reposo")
-            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0), "ligera")
-            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5), "intensa")
-            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5), "moderada")
-            @paciente6 = Pacientes.new("aaa", @datos1 = Antropometrico.new(1, 65,1.45,15,68.0,69.0), "moderada")
-            @paciente7 = Pacientes.new("bbb", @datos2 = Antropometrico.new(1, 64.4, 1.66, 55, 82.0, 86.6), "reposo")
-            @paciente8 = Pacientes.new("ccc", @datos3 = Antropometrico.new(0, 49.6, 1.65, 48, 100.0, 109.0), "ligera")
-            @paciente9 = Pacientes.new("ddd", @datos4 = Antropometrico.new(1, 120.2, 1.90, 44, 154.7, 162.5), "intensa")
-            @paciente10 = Pacientes.new("eee", @datos5 = Antropometrico.new(0, 45.2, 1.15, 10, 35.7, 39.5), "moderada")
-            
-            @lista_pacientes = DlinkedList.new()
-            @lista_pacientes.insertTail(@paciente1)
-            @lista_pacientes.insertTail(@paciente2)
-            @lista_pacientes.insertTail(@paciente3)
-            @lista_pacientes.insertTail(@paciente4)
-            @lista_pacientes.insertTail(@paciente5)
-            @lista_pacientes.insertTail(@paciente6)
-            @lista_pacientes.insertTail(@paciente7)
-            @lista_pacientes.insertTail(@paciente8)
-            @lista_pacientes.insertTail(@paciente9)
-            @lista_pacientes.insertTail(@paciente10)
-            
-            @lista_de_pacientes = DlinkedList.new()
-            @lista_de_pacientes.insertTail(@paciente1)
-            @lista_de_pacientes.insertTail(@paciente2)
-            @lista_de_pacientes.insertTail(@paciente3)
-            @lista_de_pacientes.insertTail(@paciente4)
-            @lista_de_pacientes.insertTail(@paciente5)
+            @lista_pacientes = [@paciente1, @paciente2, @paciente3, @paciente4, @paciente5]
             
         end
         it "pacientes a los que el menu 1 les vale" do
             #expect(@lista_alimentos1.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }).to be_between(@paciente1.gasto_energetico_total-(@paciente1.gasto_energetico_total*0.1), @paciente1.gasto_energetico_total+(@paciente1.gasto_energetico_total*0.1)).inclusive
             #expect(@lista_alimentos1.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }).to be_within(900).of(1003.5)
-            expect(@lista_de_pacientes.select { |lista_de_pacientes| lista_de_pacientes.gasto_energetico_total <= @lista_alimentos1.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos1.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
         end
         it "pacientes a los que el menu 2 les vale" do
-            expect(@lista_de_pacientes.select { |lista_de_pacientes| lista_de_pacientes.gasto_energetico_total <= @lista_alimentos2.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente5])
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos2.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente5])
         end
         it "pacientes a los que el menu 3 les vale" do
-            expect(@lista_de_pacientes.select { |lista_de_pacientes| lista_de_pacientes.gasto_energetico_total <= @lista_alimentos3.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos3.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
         end
         it "pacientes a los que el menu 4 les vale" do
-            expect(@lista_de_pacientes.select { |lista_de_pacientes| lista_de_pacientes.gasto_energetico_total <= @lista_alimentos4.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente2, @paciente3])
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos4.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente2, @paciente3])
         end
         it "pacientes a los que el menu 5 les vale" do
-            expect(@lista_de_pacientes.select { |lista_de_pacientes| lista_de_pacientes.gasto_energetico_total <= @lista_alimentos5.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
+            expect(@lista_pacientes.select { |lista_pacientes| lista_pacientes.gasto_energetico_total <= @lista_alimentos5.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal }}).to eq([@paciente1, @paciente2, @paciente3, @paciente4, @paciente5])
         end
         
-        
-   
-    
-        it "for dll" do
-            x.report("for:") { n.times do expect(@lista_pacientes.ordenarFor).to eq([@paciente3, @paciente8, @paciente10, @paciente7, @paciente6, @paciente2, @paciente1, @paciente5, @paciente4, @paciente9]) end }
-            # expect(@lista_pacientes.ordenarFor).to eq([@paciente3, @paciente8, @paciente10, @paciente7, @paciente6, @paciente2, @paciente1, @paciente5, @paciente4, @paciente9])
-        end
-        
-        it "Each dll" do
-            x.report("each:") {n.times do expect(@lista_pacientes.ordenarEach).to eq([@paciente3, @paciente8, @paciente10, @paciente7, @paciente6, @paciente2, @paciente1, @paciente5, @paciente4, @paciente9]) end}
-        end
-        
-        it "sort dll" do
-            x.report("sort:") {n.times do expect(@lista_pacientes.sort).to eq([@paciente3, @paciente8, @paciente10, @paciente7, @paciente6, @paciente2, @paciente1, @paciente5, @paciente4, @paciente9]) end}
-        end
-
-        
- 
-        it "each array" do
-            x.report("each:") { n.times do expect(ordenarArrayEach(@lista_menu)).to eq([@lista_alimentos9, @lista_alimentos10, @lista_alimentos4, @lista_alimentos2, @lista_alimentos5, @lista_alimentos6,  @lista_alimentos7, @lista_alimentos3, @lista_alimentos1, @lista_alimentos8]) end}
-        end
-        
-        it "for array" do
-            x.report("for:") { n.times do expect(ordenarArrayFor(@lista_menu)).to eq([@lista_alimentos9, @lista_alimentos10, @lista_alimentos4, @lista_alimentos2, @lista_alimentos5, @lista_alimentos6,  @lista_alimentos7, @lista_alimentos3, @lista_alimentos1, @lista_alimentos8]) end}
-        end
-        
-        it "sort array" do
-            x.report("sort:") { n.times do expect(@lista_menu.sort { |menus| menus.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal}}).to eq([@lista_alimentos10, @lista_alimentos9, @lista_alimentos8, @lista_alimentos7, @lista_alimentos6, @lista_alimentos5, @lista_alimentos4, @lista_alimentos3, @lista_alimentos2, @lista_alimentos1]) end}
-        end
-       
     end
     
 end
