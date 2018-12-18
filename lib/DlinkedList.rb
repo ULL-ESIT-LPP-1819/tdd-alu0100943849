@@ -188,5 +188,7 @@ class DlinkedList
        each {|x| puts x}
        
     end
-        
+      
+   
+    
 end
