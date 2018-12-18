@@ -7,6 +7,8 @@ require 'Antropometrico'
 
 class Individuo 
     
+    include Comparable
+    
     attr_reader :nombre
     
     def initialize(nombre)
@@ -161,6 +163,10 @@ class Pacientes < Individuo
         
         gasto_energetico_basal + efecto_termogeno + gasto_actividad_fisica
         
+    end
+    
+    def <=>(other)
+        gasto_energetico_total <=> other.gasto_energetico_total
     end
     
     # Define el metodo para imprimir por pantalla 
