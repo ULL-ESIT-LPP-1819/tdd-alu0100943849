@@ -30,7 +30,7 @@ class Nutricional_label
     # el nombre de la etiqueta almacenado el la variable nombre_etiqueta
     def label_name
         
-        nombre_etiqueta 
+        "#{nombre_etiqueta}"
         
     end
     

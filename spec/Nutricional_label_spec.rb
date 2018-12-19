@@ -1,6 +1,42 @@
 require 'spec_helper'
 require 'benchmark'
 
+RSpec.describe Antropometrico do
+    it "has a version number" do
+        expect(Nutrientes::VERSION).not_to be nil
+    end
+    
+    before :all do
+        @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0)
+    end
+    
+    describe "# RCC de un individuo:  " do
+        it "existe un nombre" do
+            expect(@datos1.rCC).to eq(0.94)
+        end
+    end
+    
+    describe "# % de grasa de un individuo:  " do
+        it "existe un nombre" do
+            expect(@datos1.porcentaje_grasa).to eq(18.64)
+        end
+    end
+    
+    describe "# IMC de un individuo:  " do
+        it "existe un nombre" do
+            expect(@datos1.indice_masa_corporal).to eq(24.8)
+        end
+    end
+    
+    describe "# % de grasa de un individuo:  " do
+        it "existe un nombre" do
+            expect(@datos1.to_s).to eq("24.816326530612244, 18.639591836734688, 0.9438202247191011")
+        end
+    end
+    
+    
+end
+
 #----------------------------------------pruebas para la etiquetas nutricionales--------------------------------------------
 
 RSpec.describe Nutricional_label do
@@ -104,6 +140,12 @@ RSpec.describe Nutricional_label do
             expect(@alimento1.print_label)
         end
     end
+    
+    describe "# imprimir kcal: " do
+        it "to_s" do
+            expect(@alimento1.to_s). to eq("514.4")
+        end
+    end
 end
 #----------------------------------------pruebas para la lista doblemente enlazada--------------------------------------------
 RSpec.describe DlinkedList do
@@ -136,8 +178,8 @@ RSpec.describe DlinkedList do
             expect(@dll.tail.value).to eq(@alimento1)
         end
         it "Introducir mas alimentos" do
-            @dll.insertTail(@alimento2)
-            expect(@dll.tail.value).to eq(@alimento2)
+            @dll.insertHead(@alimento2)
+            expect(@dll.head.value).to eq(@alimento2)
             @dll.insertTail(@alimento3)
             expect(@dll.tail.value).to eq(@alimento3)
             @dll.insertTail(@alimento4)
@@ -166,7 +208,7 @@ RSpec.describe DlinkedList do
           expect(@dll.popTail.value).to eq(@alimento5)
         end
         it "eliminar el primer alimento de la list." do
-          expect(@dll.popHead.value).to eq(@alimento1)
+          expect(@dll.popHead.value).to eq(@alimento2)
         end
         it "Eliminar todos los alimento existente en la lista." do
           expect(@dll.removeAll).to eq(nil)
@@ -174,6 +216,16 @@ RSpec.describe DlinkedList do
         it "Eliminar un alimento inexistente de la lista." do
           expect(@dll.head).to eq(nil)
         end
+        it "Eliminar un alimento inexistente de la lista vacia." do
+          expect(@dll.popTail).to eq(nil)
+        end
+    end
+    
+    describe "# imprimir la dll: " do
+        it "to_s" do
+           expect(@dll.to_s).to eq(nil)
+        end
+        
     end
 end
 #----------------------------------------pruebas de herencia de individuos--------------------------------------------
@@ -191,7 +243,7 @@ RSpec.describe Individuo do
         @alimento5 = Nutricional_label.new("Hamburguesa",20.0,11.0,35.0,8.0,26.9,2.75)
     end
     describe "# Herencia: " do
-        before :each do
+        before :all do
             @persona = Individuo.new("Mario Perez")
             @paciente = Pacientes.new("Pepe Garcia", nil, nil)
         end  
@@ -221,6 +273,9 @@ RSpec.describe Individuo do
         end
         it "una persopacientena pertenece a la clase BasicObject" do
            expect(@paciente).is_a? BasicObject
+        end
+        it "nombre de un individuo" do
+           expect(@persona.to_s).to eq("Mario Perez")
         end
     end
     
@@ -262,6 +317,7 @@ RSpec.describe Individuo do
             @lista_pacientes.insertTail(@paciente3)
             @lista_pacientes.insertTail(@paciente4)
             @lista_pacientes.insertTail(@paciente5)
+            
         end
         it "comprobacion de si un individuo cualquiera es paciente" do
            expect(@persona.es @paciente1).to eq(false) #Mario Perez no es Pepe Garcia

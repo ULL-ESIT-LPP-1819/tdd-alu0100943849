@@ -39,7 +39,7 @@ class Individuo
     # == Returns:
     # Un string con el contenido de las variables
     def to_s
-        puts "#{nombre}"
+        "#{nombre}"
     end
     
     
