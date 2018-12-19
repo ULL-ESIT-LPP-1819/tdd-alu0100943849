@@ -119,3 +119,54 @@ class Nutricional_label
     end
     
 end 
+
+
+    def ordenarArrayEach(lista_menus)
+        arrayOrd = []
+        lista_menus.each do |menus|
+            if arrayOrd.empty?
+                arrayOrd.push(menus)
+            else
+                indice = 0
+                while indice < arrayOrd.length
+                    energia = menus.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal}
+                    energia_siguiente = arrayOrd[indice].reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal}
+                    if energia <= energia_siguiente
+                        arrayOrd.insert(indice, menus)
+                        break
+                    elsif indice == arrayOrd.length-1
+                        arrayOrd.insert(indice+1, menus)
+                        break
+                    end
+                    indice+=1
+                end
+            end
+        end
+        return arrayOrd
+        
+    end
+    
+    def ordenarArrayFor(lista_menus)
+        arrayOrd = []
+        for menus in lista_menus
+            if arrayOrd.empty?
+                arrayOrd.push(menus)
+            else
+                indice = 0
+                while indice < arrayOrd.length
+                    energia = menus.reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal}
+                    energia_siguiente = arrayOrd[indice].reduce(0) {|sum, val_ener| sum + val_ener.energetic_value_Kcal}
+                    if energia <= energia_siguiente
+                        arrayOrd.insert(indice, menus)
+                        break
+                    elsif indice == arrayOrd.length-1
+                        arrayOrd.insert(indice+1, menus)
+                        break
+                    end
+                    indice+=1
+                end
+            end
+        end
+        return arrayOrd
+        
+    end

@@ -184,5 +184,49 @@ class DlinkedList
        each {|x| puts x}
        
     end
-        
+      
+ def ordenarFor
+    arrayOrd = []
+        for nodo in self
+            if arrayOrd.empty?
+                arrayOrd.push(nodo)
+            else
+                indice = 0
+                while indice < arrayOrd.length
+                    if nodo <= arrayOrd[indice]
+                        arrayOrd.insert(indice, nodo)
+                        break
+                    elsif indice == arrayOrd.length-1
+                        arrayOrd.insert(indice+1, nodo)
+                        break
+                    end
+                    indice+=1
+                end
+            end
+        end
+        return arrayOrd
+    end
+    
+    def ordenarEach  
+    arrayOrd = []
+        each do |nodo|
+            if arrayOrd.empty?
+                arrayOrd.push(nodo)
+            else
+                indice = 0
+                while indice < arrayOrd.length
+                    if nodo <= arrayOrd[indice]
+                        arrayOrd.insert(indice, nodo)
+                        break
+                    elsif indice == arrayOrd.length-1
+                        arrayOrd.insert(indice+1, nodo)
+                        break
+                    end
+                    indice+=1
+                end
+            end
+        end
+        return arrayOrd
+    end
+    
 end
