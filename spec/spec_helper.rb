@@ -1,3 +1,7 @@
+require 'coveralls'
+Coveralls.wear!
+
+
 require "bundler/setup"
 require "Nutricional_label"
 require "DlinkedList"
