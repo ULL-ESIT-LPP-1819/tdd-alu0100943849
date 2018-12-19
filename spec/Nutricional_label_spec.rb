@@ -211,6 +211,9 @@ RSpec.describe DlinkedList do
           expect(@dll.popHead.value).to eq(@alimento2)
         end
         it "Eliminar todos los alimento existente en la lista." do
+          @dll.insertTail(@alimento3)
+          @dll.insertTail(@alimento4)
+          @dll.insertTail(@alimento5)
           expect(@dll.removeAll).to eq(nil)
         end
         it "Eliminar un alimento inexistente de la lista." do
