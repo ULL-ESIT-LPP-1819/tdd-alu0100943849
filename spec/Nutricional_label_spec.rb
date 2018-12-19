@@ -465,28 +465,17 @@ RSpec.describe Pacientes do
         before :all do
             
             #grasa,grasa_saturada,hid_carbono,azucares,proteinas,sal
-            @alimento1 = Nutricional_label.new("1",11.0,22.0,24.0,23.0,5.7,1.1) 
-            @alimento2 = Nutricional_label.new("2",9.0,14.0,31.0,36.0,6.9,0.75)
-            @alimento3 = Nutricional_label.new("3",11.2,0.8,0.1,12.5,1.8,0.1)
-            @alimento4 = Nutricional_label.new("4",1.0,0.0,14.0,0.0,36.0,0.75)
-            @alimento5 = Nutricional_label.new("5",15.0,11.0,35.0,8.0,26.9,2.75)
-            @alimento6 = Nutricional_label.new("6",12.4, 5.3, 35.0, 7.0, 4.6, 1.75)
-            @alimento7 = Nutricional_label.new("7",0.2,0.0,6.8,4.7,0.9,0.17)
-            @alimento8 = Nutricional_label.new("8",54.1,0.0,5.36,0.0,18.71,0.5)
-            @alimento9 = Nutricional_label.new("9",0.7,0.2,1.6,0.0,6.67,0.75)
-            @alimento10 = Nutricional_label.new("10",1.8,0.4,77.0,1.0,7.5,0.02)
             
-            
-            #  @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) 
-            # @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
-            # @alimento3 = Nutricional_label.new("yogur",11.2,0.8,0.1,12.5,1.8,0.1)
-            # @alimento4 = Nutricional_label.new("Chuleta de cerdo",1.0,0.0,14.0,0.0,36.0,0.75)
-            # @alimento5 = Nutricional_label.new("Hamburguesa",15.0,11.0,35.0,8.0,26.9,2.75)
-            # @alimento6 = Nutricional_label.new("Pizza",12.4, 5.3, 35.0, 7.0, 4.6, 1.75)
-            # @alimento7 = Nutricional_label.new("Ensalada",0.2,0.0,6.8,4.7,0.9,0.17)
-            # @alimento8 = Nutricional_label.new("Almendras",54.1,0.0,5.36,0.0,18.71,0.5)
-            # @alimento9 = Nutricional_label.new("Arroz",0.7,0.2,1.6,0.0,6.67,0.75)
-            # @alimento10 = Nutricional_label.new("Pasta",1.8,0.4,77.0,1.0,7.5,0.02)
+            @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) 
+            @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
+            @alimento3 = Nutricional_label.new("yogur",11.2,0.8,0.1,12.5,1.8,0.1)
+            @alimento4 = Nutricional_label.new("Chuleta de cerdo",1.0,0.0,14.0,0.0,36.0,0.75)
+            @alimento5 = Nutricional_label.new("Hamburguesa",15.0,11.0,35.0,8.0,26.9,2.75)
+            @alimento6 = Nutricional_label.new("Pizza",12.4, 5.3, 35.0, 7.0, 4.6, 1.75)
+            @alimento7 = Nutricional_label.new("Ensalada",0.2,0.0,6.8,4.7,0.9,0.17)
+            @alimento8 = Nutricional_label.new("Almendras",54.1,0.0,5.36,0.0,18.71,0.5)
+            @alimento9 = Nutricional_label.new("Arroz",0.7,0.2,1.6,0.0,6.67,0.75)
+            @alimento10 = Nutricional_label.new("Pasta",1.8,0.4,77.0,1.0,7.5,0.02)
             
             @lista_alimentos1 = [@alimento1, @alimento2, @alimento3, @alimento5, @alimento4]
             @lista_alimentos2 = [@alimento6, @alimento7, @alimento8, @alimento9, @alimento10]
@@ -591,60 +580,4 @@ RSpec.describe Pacientes do
         end
         
     end
-    
-    RSpec.describe Nutricional_label do
-       before :all do
-           
-            @alimento1 = Nutricional_label.new("Palmera de chocolate",11.0,22.0,24.0,23.0,5.7,1.1) 
-            @alimento2 = Nutricional_label.new("Galletas",9.0,14.0,31.0,36.0,6.9,0.75)
-            @alimento3 = Nutricional_label.new("yogur",11.2,0.8,0.1,12.5,1.8,0.1)
-            @alimento4 = Nutricional_label.new("Chuleta de cerdo",1.0,0.0,14.0,0.0,36.0,0.75)
-            @alimento5 = Nutricional_label.new("Hamburguesa",15.0,11.0,35.0,8.0,26.9,2.75)
-            @alimento6 = Nutricional_label.new("Pizza",12.4, 5.3, 35.0, 7.0, 4.6, 1.75)
-            @alimento7 = Nutricional_label.new("Ensalada",0.2,0.0,6.8,4.7,0.9,0.17)
-            @alimento8 = Nutricional_label.new("Almendras",54.1,0.0,5.36,0.0,18.71,0.5)
-            @alimento9 = Nutricional_label.new("Arroz",0.7,0.2,1.6,0.0,6.67,0.75)
-            @alimento10 = Nutricional_label.new("Pasta",1.8,0.4,77.0,1.0,7.5,0.02)
-            
-            @lista_alimentos1 = [@alimento1, @alimento2, @alimento3, @alimento5, @alimento4]
-            @lista_alimentos2 = [@alimento6, @alimento7, @alimento8, @alimento9, @alimento10]
-            @lista_alimentos3 = [@alimento1, @alimento7, @alimento3, @alimento2, @alimento5]
-            @lista_alimentos4 = [@alimento7, @alimento1, @alimento7, @alimento4, @alimento7]
-            @lista_alimentos5 = [@alimento3, @alimento4, @alimento7, @alimento1, @alimento8]
-           
-            @lista_menu = [@lista_alimentos1,  @lista_alimentos2, @lista_alimentos3, @lista_alimentos4, @lista_alimentos5, @lista_alimentos1,  @lista_alimentos2, @lista_alimentos3, @lista_alimentos4, @lista_alimentos5]
-           
-            @paciente1 = Pacientes.new("Pepe Garcia", @datos1 = Antropometrico.new(1, 76,1.75,22,84.0,89.0), "moderada")
-            @paciente2 = Pacientes.new("Juas Perez", @datos2 = Antropometrico.new(1, 90.4, 1.80, 34, 120.0, 115.6), "reposo")
-            @paciente3 = Pacientes.new("Begoña Gomez", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 45.0, 50.0), "ligera")
-            @paciente4 = Pacientes.new("Luis Medina", @datos4 = Antropometrico.new(0, 120.2, 1.70, 28, 193.7, 193.5), "intensa")
-            @paciente5 = Pacientes.new("Maria Perez", @datos5 = Antropometrico.new(0, 120.2, 1.90, 31, 193.7, 193.5), "moderada")
-            @paciente6 = Pacientes.new("aaa", @datos1 = Antropometrico.new(1, 65,1.45,15,68.0,69.0), "moderada")
-            @paciente7 = Pacientes.new("bbb", @datos2 = Antropometrico.new(1, 64.4, 1.66, 55, 82.0, 86.6), "reposo")
-            @paciente8 = Pacientes.new("ccc", @datos3 = Antropometrico.new(0, 49.6, 1.60, 48, 100.0, 109.0), "ligera")
-            @paciente9 = Pacientes.new("ddd", @datos4 = Antropometrico.new(1, 120.2, 1.90, 44, 154.7, 162.5), "intensa")
-            @paciente10 = Pacientes.new("eee", @datos5 = Antropometrico.new(0, 45.2, 1.15, 10, 35.7, 39.5), "moderada")
-            
-            @lista_de_pacientes = new DlinkedList()
-            @lista_de_pacientes.insertTail(@paciente1)
-            @lista_de_pacientes.insertTail(@paciente2)
-            @lista_de_pacientes.insertTail(@paciente3)
-            @lista_de_pacientes.insertTail(@paciente4)
-            @lista_de_pacientes.insertTail(@paciente5)
-            @lista_de_pacientes.insertTail(@paciente6)
-            @lista_de_pacientes.insertTail(@paciente7)
-            @lista_de_pacientes.insertTail(@paciente8)
-            @lista_de_pacientes.insertTail(@paciente9)
-            @lista_de_pacientes.insertTail(@paciente10)
-           
-        end
-        it "ordena for" do
-            expect(@lista_de_pacientes.ordenar).to eq(nil)
-        end
-        
-        
-        
-        
-    end
-    
 end
