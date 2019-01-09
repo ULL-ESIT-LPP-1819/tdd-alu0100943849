@@ -119,4 +119,30 @@ class Menu
        
     end
     
+    def printm
+        cout = "\n" + @dia + "     " + @titulo_menu + "                 Composicion nutricional"
+        cout << "\n#{'=' * cout.size}\n"
+        
+        header=sprintf("%34s %14s %10s %17s %12s %7s %6s %20s\n","porcion", "gramos", "grasas", "carbohidratos", "proteinas", "fibra", "sal", "valor energetico")
+    
+        cout << header
+        cout << "Desayuno\n"
+        @desayunos.each do |aux|
+          cout << "#{aux}\n"
+        end
+        
+        cout << "\ncomida\n"
+        @comidas.each do |aux2|
+          cout << "#{aux2}\n"
+        end
+        
+        cout << "\ncena\n"
+        @cenas.each do |aux3|
+          cout << "#{aux3}\n"
+        end
+        
+        cout << "\nvalor energetico total #{@vet.round(2)}" + "\n"
+        puts cout
+    end
+    
 end
