@@ -60,7 +60,6 @@ RSpec.describe Menu do
     
     describe "# Datos del menu:  " do
         
-        
         it "existe un dia" do
             expect(@menu.dia).to eq("Lunes")
         end
@@ -78,7 +77,7 @@ RSpec.describe Menu do
         end
         
         it "valores de desayunos" do
-            expect(@menu.desayunos).to eq([" \"Pan de trigo integral\" 1 rodaja 100 3.3 54.0 11.0  2.3 0.06", " \"Actimel\" 1 porcion 100 3.4 4.4 3.6   0.05"])
+            expect(@menu.desayunos).to eq([" \"Pan de trigo integral\"   1 rodaja        100        3.3        54.0            11.0          2.3     0.06    299.26    ", " \"Actimel\"                 1 porcion       100        3.4        4.4             3.6                   0.05    62.9      "])
         end
         
         it "existe comidas" do
@@ -86,7 +85,7 @@ RSpec.describe Menu do
         end
         
         it "valores de comidas" do
-            expect(@menu.comidas).to eq([" \"Arroz\" 1 taza 100 0.9 81.6 6.67  1.4 0.04", " \"Lentejas\" 1/2 cucharon  0.4 20.0 9.0  8.0 0.02", " \"Naranja\" 1 pieza 100 0.12 11.75 0.94  2.4 "])
+            expect(@menu.comidas).to eq([" \"Arroz\"                   1 taza          100        0.9        81.6            6.67          1.4     0.04    367.02000000000004", " \"Lentejas\"                1/2 cucharon               0.4        20.0            9.0           8.0     0.02    151.72    ", " \"Naranja\"                 1 pieza         100        0.12       11.75           0.94          2.4             61.44     "])
         end
         
         it "existe cenas" do
@@ -94,7 +93,11 @@ RSpec.describe Menu do
         end
         
         it "valores de cenas" do
-            expect(@menu.cenas).to eq([" \"Leche entera hacendado\" 1 vaso 100 3.6 4.6 3.1   0.13"])
+            expect(@menu.cenas).to eq([" \"Leche entera hacendado\"  1 vaso          100        3.6        4.6             3.1                   0.13    63.98     "])
+        end
+        
+         it "existen valores energeticos" do
+            expect(@menu.vet).to eq(1006.3200000000002)
         end
     
     end
