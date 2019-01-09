@@ -7,6 +7,7 @@ require "Nutricional_label"
 require "DlinkedList"
 require "Antropometrico"
 require "Individuo"
+require "Menu"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
