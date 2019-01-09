@@ -66,23 +66,35 @@ RSpec.describe Menu do
         end
         
         it "existen un tiempo de ingesta" do
-            expect(@menu.tiempo_comida).to eq([])
+            expect(@menu.tiempo_comida).to eq([" 30 35"])
         end
         
         it "existen un titulo" do
             expect(@menu.titulo_menu).to eq("Bajo en calorias")
         end
         
-        it "existe desayuno" do
-            expect(@menu.desayunos).to eq([])
+        it "existe desayunos" do
+            expect(@menu.desayunos).not_to eq(nil)
         end
         
-        it "existe comida" do
-            expect(@menu.comidas).to eq([])
+        it "valores de desayunos" do
+            expect(@menu.desayunos).to eq([" \"Pan de trigo integral\" 1 rodaja 100 3.3 54.0 11.0  2.3 0.06", " \"Actimel\" 1 porcion 100 3.4 4.4 3.6   0.05"])
         end
         
-        it "existe cena" do
-            expect(@menu.cenas).to eq([])
+        it "existe comidas" do
+            expect(@menu.comidas).not_to eq(nil)
+        end
+        
+        it "valores de comidas" do
+            expect(@menu.comidas).to eq([" \"Arroz\" 1 taza 100 0.9 81.6 6.67  1.4 0.04", " \"Lentejas\" 1/2 cucharon  0.4 20.0 9.0  8.0 0.02", " \"Naranja\" 1 pieza 100 0.12 11.75 0.94  2.4 "])
+        end
+        
+        it "existe cenas" do
+            expect(@menu.cenas).not_to eq(nil)
+        end
+        
+        it "valores de cenas" do
+            expect(@menu.cenas).to eq([" \"Leche entera hacendado\" 1 vaso 100 3.6 4.6 3.1   0.13"])
         end
     
     end
