@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Carlos Arvelo Garcia"]
   spec.email         = ["alu0100943849@ull.edu.es"]
 
-  spec.summary       = %q{"Practica 6: nutrientes mediante TDD"}
+  spec.summary       = %q{"Practica 12"}
   spec.homepage      = "https://github.com/ULL-ESIT-LPP-1819/tdd-alu0100943849"
   spec.license       = "MIT"
 
