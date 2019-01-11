@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nutrientes (0.1.0)
+    menuNutrientes (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -103,7 +103,7 @@ DEPENDENCIES
   guard
   guard-bundler
   guard-rspec
-  nutrientes!
+  menuNutrientes!
   rake (~> 10.0)
   rspec (~> 3.0)
 
